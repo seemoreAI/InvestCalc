@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, Target, Calendar, Percent, Euro, BarChart3 } from 'lucide-react';
-import { InstallPrompt } from './components/InstallPrompt';
 
 interface CalculationResult {
   monthlyInvestment: number;
@@ -373,7 +372,6 @@ function App() {
           </div>
         </div>
       </div>
-      <InstallPrompt />
     </div>
   );
 }
