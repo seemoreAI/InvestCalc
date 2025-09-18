@@ -113,39 +113,6 @@ function App() {
           </p>
         </div>
 
-        {/* Footer */}
-        <div className="mt-16 max-w-4xl mx-auto">
-          <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl p-6 border border-slate-700/30">
-            <div className="text-center space-y-4">
-              <div className="flex items-center justify-center gap-2 text-slate-300">
-                <span>Разработено от</span>
-                <span className="font-semibold text-blue-400">seemore</span>
-                <span>• Безплатно за ползване</span>
-              </div>
-              
-              <div className="text-slate-400 text-sm max-w-2xl mx-auto leading-relaxed">
-                <p className="mb-3">
-                  <strong className="text-yellow-400">Отказ от отговорност:</strong> Това приложение е експериментално и се предлага "както е" без никакви гаранции. 
-                  Използвате го на ваша собствена отговорност. Резултатите са теоретични изчисления и не представляват инвестиционни съвети.
-                </p>
-                <p className="mb-3">
-                  Приложението няма да бъде активно поддържано или ъпдейтвано. Реалните инвестиционни резултати могат да се различават значително от прогнозите.
-                </p>
-                <p>
-                  Изходният код е достъпен на: 
-                  <a 
-                    href="https://github.com/seemoreAI/InvestCalc" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-blue-400 hover:text-blue-300 underline ml-1 transition-colors"
-                  >
-                    https://github.com/seemoreAI/InvestCalc
-                  </a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
         <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {/* Input Section */}
           <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/50 shadow-2xl">
@@ -378,6 +345,40 @@ function App() {
                 </div>
               </>
             )}
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="mt-16 max-w-4xl mx-auto">
+          <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl p-6 border border-slate-700/30">
+            <div className="text-center space-y-3">
+              <div className="flex items-center justify-center gap-2 text-slate-300 text-sm">
+                <span>Разработено от</span>
+                <span className="font-semibold text-blue-400">seemore</span>
+                <span>• Безплатно за ползване</span>
+              </div>
+              
+              <div className="text-slate-400 text-xs max-w-2xl mx-auto leading-relaxed">
+                <p className="mb-2">
+                  <strong className="text-yellow-400">Отказ от отговорност:</strong> Това приложение е експериментално и се предлага "както е" без никакви гаранции. 
+                  Използвате го на ваша собствена отговорност. Резултатите са теоретични изчисления и не представляват инвестиционни съвети.
+                </p>
+                <p className="mb-2">
+                  Приложението няма да бъде активно поддържано или ъпдейтвано. Реалните инвестиционни резултати могат да се различават значително от прогнозите.
+                </p>
+                <p>
+                  Изходният код е достъпен на: 
+                  <a 
+                    href="https://github.com/seemoreAI/InvestCalc" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-400 hover:text-blue-300 underline ml-1 transition-colors"
+                  >
+                    https://github.com/seemoreAI/InvestCalc
+                  </a>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
