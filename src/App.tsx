@@ -135,12 +135,8 @@ function App() {
                     value={initialCapital}
                     onChange={(e) => {
                       const value = e.target.value;
-                      if (value === '' || value === '0') {
-                        setInitialCapital(0);
-                      } else {
-                        const numValue = Number(value);
-                        setInitialCapital(Math.min(numValue, 10000000)); // Максимум 10 милиона
-                      }
+                      const numValue = value === '' ? 0 : Number(value);
+                      setInitialCapital(Math.min(Math.max(numValue, 0), 10000000));
                     }}
                     min="0"
                     max="10000000"
@@ -164,12 +160,8 @@ function App() {
                   value={years}
                   onChange={(e) => {
                     const value = e.target.value;
-                    if (value === '' || value === '0') {
-                      setYears(0);
-                    } else {
-                      const numValue = Number(value);
-                      setYears(Math.min(numValue, 50)); // Максимум 50 години
-                    }
+                    const numValue = value === '' ? 0 : Number(value);
+                    setYears(Math.min(Math.max(numValue, 0), 50));
                   }}
                   min="1"
                   max="50"
@@ -191,12 +183,8 @@ function App() {
                     value={targetAmount}
                     onChange={(e) => {
                       const value = e.target.value;
-                      if (value === '' || value === '0') {
-                        setTargetAmount(0);
-                      } else {
-                        const numValue = Number(value);
-                        setTargetAmount(Math.min(numValue, 50000000)); // Максимум 50 милиона
-                      }
+                      const numValue = value === '' ? 0 : Number(value);
+                      setTargetAmount(Math.min(Math.max(numValue, 0), 50000000));
                     }}
                     min="1000"
                     max="50000000"
@@ -217,12 +205,8 @@ function App() {
                   value={annualReturn}
                   onChange={(e) => {
                     const value = e.target.value;
-                    if (value === '' || value === '0') {
-                      setAnnualReturn(0);
-                    } else {
-                      const numValue = Number(value);
-                      setAnnualReturn(Math.min(numValue, 30)); // Максимум 30% годишна доходност
-                    }
+                    const numValue = value === '' ? 0 : Number(value);
+                    setAnnualReturn(Math.min(Math.max(numValue, 0), 30));
                   }}
                   min="0"
                   max="30"
