@@ -138,11 +138,12 @@ function App() {
                       if (value === '' || value === '0') {
                         setInitialCapital(0);
                       } else {
-                        setInitialCapital(Number(value));
+                        const numValue = Number(value);
+                        setInitialCapital(Math.min(numValue, 10000000)); // Максимум 10 милиона
                       }
                     }}
                     min="0"
-                    max="1000000000"
+                    max="10000000"
                     className="w-full bg-slate-700/50 border border-slate-600 rounded-lg pl-12 pr-4 py-3 text-white text-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
                     placeholder="0"
                   />
@@ -166,11 +167,12 @@ function App() {
                     if (value === '' || value === '0') {
                       setYears(0);
                     } else {
-                      setYears(Number(value));
+                      const numValue = Number(value);
+                      setYears(Math.min(numValue, 50)); // Максимум 50 години
                     }
                   }}
                   min="1"
-                  max="100"
+                  max="50"
                   className="w-full bg-slate-700/50 border border-slate-600 rounded-lg px-4 py-3 text-white text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
                   placeholder="20"
                 />
@@ -192,11 +194,12 @@ function App() {
                       if (value === '' || value === '0') {
                         setTargetAmount(0);
                       } else {
-                        setTargetAmount(Number(value));
+                        const numValue = Number(value);
+                        setTargetAmount(Math.min(numValue, 50000000)); // Максимум 50 милиона
                       }
                     }}
                     min="1000"
-                    max="1000000000"
+                    max="50000000"
                     className="w-full bg-slate-700/50 border border-slate-600 rounded-lg pl-12 pr-4 py-3 text-white text-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200"
                     placeholder="1000000"
                   />
@@ -217,17 +220,18 @@ function App() {
                     if (value === '' || value === '0') {
                       setAnnualReturn(0);
                     } else {
-                      setAnnualReturn(Number(value));
+                      const numValue = Number(value);
+                      setAnnualReturn(Math.min(numValue, 30)); // Максимум 30% годишна доходност
                     }
                   }}
                   min="0"
-                  max="100"
+                  max="30"
                   step="0.1"
                   className="w-full bg-slate-700/50 border border-slate-600 rounded-lg px-4 py-3 text-white text-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200"
                   placeholder="10"
                 />
                 <p className="text-slate-400 text-sm mt-2">
-                  Историческата средна доходност на S&P 500 е около 10% годишно
+                  Историческата средна доходност на S&P 500 е около 10% годишно (максимум 30%)
                 </p>
               </div>
             </div>
