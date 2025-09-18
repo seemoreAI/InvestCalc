@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, Target, Calendar, Percent, Euro, BarChart3 } from 'lucide-react';
 import { InstallPrompt } from './components/InstallPrompt';
-import { InstallPrompt } from './components/InstallPrompt';
 
 interface CalculationResult {
   monthlyInvestment: number;
@@ -147,11 +146,6 @@ function App() {
                        e.target.select();
                      }
                    }}
-                   onFocus={(e) => {
-                     if (e.target.value === '0') {
-                       e.target.select();
-                     }
-                   }}
                     onWheel={(e) => e.currentTarget.blur()}
                     min="0"
                     max="10000000"
@@ -180,11 +174,6 @@ function App() {
                     const numValue = value === '' ? 0 : Number(value);
                     setYears(Math.min(Math.max(numValue, 0), 50));
                   }}
-                 onFocus={(e) => {
-                   if (e.target.value === '0') {
-                     e.target.select();
-                   }
-                 }}
                  onFocus={(e) => {
                    if (e.target.value === '0') {
                      e.target.select();
@@ -384,7 +373,6 @@ function App() {
           </div>
         </div>
       </div>
-      <InstallPrompt />
       <InstallPrompt />
     </div>
   );
