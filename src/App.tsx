@@ -369,6 +369,12 @@ function App() {
                   </a>
                 </p>
               </div>
+              <p className="mt-3 pt-3 border-t border-slate-600/30">
+                За връзка с разработчика: 
+                <a href="mailto:seemore@mail.bg" className="text-blue-400 hover:text-blue-300 underline ml-1 transition-colors">
+                  seemore@mail.bg
+                </a>
+              </p>
             </div>
           </div>
         </div>
