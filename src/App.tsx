@@ -19,7 +19,7 @@ function App() {
   const [years, setYears] = useState<number>(20);
   const [targetAmount, setTargetAmount] = useState<number>(1000000);
   const [annualReturn, setAnnualReturn] = useState<number>(10);
-  const [initialCapital, setInitialCapital] = useState<number>(0);
+  const [initialCapital, setInitialCapital] = useState<number>(100000);
   const [result, setResult] = useState<CalculationResult | null>(null);
 
   const calculateInvestment = () => {
@@ -154,7 +154,7 @@ function App() {
                     min="0"
                     max="10000000"
                     className="w-full bg-slate-700/50 border border-slate-600 rounded-lg pl-12 pr-4 py-3 text-white text-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
-                    placeholder="0"
+                    placeholder="100000"
                   />
                 </div>
                 <p className="text-slate-400 text-sm mt-2">
