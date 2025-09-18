@@ -138,6 +138,16 @@ function App() {
                       const numValue = value === '' ? 0 : Number(value);
                       setInitialCapital(Math.min(Math.max(numValue, 0), 10000000));
                     }}
+                   onFocus={(e) => {
+                     if (e.target.value === '0') {
+                       e.target.select();
+                     }
+                   }}
+                   onFocus={(e) => {
+                     if (e.target.value === '0') {
+                       e.target.select();
+                     }
+                   }}
                     onWheel={(e) => e.currentTarget.blur()}
                     min="0"
                     max="10000000"
@@ -164,6 +174,16 @@ function App() {
                     const numValue = value === '' ? 0 : Number(value);
                     setYears(Math.min(Math.max(numValue, 0), 50));
                   }}
+                 onFocus={(e) => {
+                   if (e.target.value === '0') {
+                     e.target.select();
+                   }
+                 }}
+                 onFocus={(e) => {
+                   if (e.target.value === '0') {
+                     e.target.select();
+                   }
+                 }}
                   onWheel={(e) => e.currentTarget.blur()}
                   min="1"
                   max="50"
