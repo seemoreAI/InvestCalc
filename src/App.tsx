@@ -4,23 +4,26 @@ import { TrendingUp, Target, Calendar, Percent, Euro, BarChart3 } from 'lucide-r
 interface CalculationResult {
   monthlyInvestment: number;
   totalInvested: number;
+  initialCapital: number;
   totalProfit: number;
   yearlyBreakdown: Array<{
     year: number;
     totalValue: number;
     totalInvested: number;
+    initialCapital: number;
     profit: number;
   }>;
 }
 
 function App() {
-  const [years, setYears] = useState<number>(10);
-  const [targetAmount, setTargetAmount] = useState<number>(100000);
+  const [years, setYears] = useState<number>(20);
+  const [targetAmount, setTargetAmount] = useState<number>(1000000);
   const [annualReturn, setAnnualReturn] = useState<number>(10);
+  const [initialCapital, setInitialCapital] = useState<number>(0);
   const [result, setResult] = useState<CalculationResult | null>(null);
 
   const calculateInvestment = () => {
-    if (years <= 0 || targetAmount <= 0 || annualReturn < 0) {
+    if (years <= 0 || targetAmount <= 0 || annualReturn < 0 || initialCapital < 0) {
       setResult(null);
       return;
     }
@@ -28,24 +31,36 @@ function App() {
     const monthlyRate = annualReturn / 100 / 12;
     const totalMonths = years * 12;
     
+    // Calculate future value of initial capital
+    const futureValueOfInitial = initialCapital * Math.pow(1 + monthlyRate, totalMonths);
+    
+    // Remaining amount needed from monthly investments
+    const remainingAmount = targetAmount - futureValueOfInitial;
+    
     // Calculate monthly payment needed using Future Value of Annuity formula
-    // PMT = FV / [((1 + r)^n - 1) / r]
-    const monthlyInvestment = targetAmount / (((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate));
+    // PMT = (FV - PV*(1+r)^n) / [((1 + r)^n - 1) / r]
+    const monthlyInvestment = remainingAmount > 0 
+      ? remainingAmount / (((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate))
+      : 0;
+      
     const totalInvested = monthlyInvestment * totalMonths;
-    const totalProfit = targetAmount - totalInvested;
+    const totalProfit = targetAmount - totalInvested - initialCapital;
 
     // Calculate yearly breakdown
     const yearlyBreakdown = [];
     for (let year = 1; year <= years; year++) {
       const monthsElapsed = year * 12;
       const investedSoFar = monthlyInvestment * monthsElapsed;
-      const totalValue = monthlyInvestment * (((Math.pow(1 + monthlyRate, monthsElapsed) - 1) / monthlyRate));
-      const profit = totalValue - investedSoFar;
+      const futureValueOfInitialAtYear = initialCapital * Math.pow(1 + monthlyRate, monthsElapsed);
+      const futureValueOfMonthlyAtYear = monthlyInvestment * (((Math.pow(1 + monthlyRate, monthsElapsed) - 1) / monthlyRate));
+      const totalValue = futureValueOfInitialAtYear + futureValueOfMonthlyAtYear;
+      const profit = totalValue - investedSoFar - initialCapital;
       
       yearlyBreakdown.push({
         year,
         totalValue,
         totalInvested: investedSoFar,
+        initialCapital,
         profit
       });
     }
@@ -53,6 +68,7 @@ function App() {
     setResult({
       monthlyInvestment,
       totalInvested,
+      initialCapital,
       totalProfit,
       yearlyBreakdown
     });
@@ -60,7 +76,7 @@ function App() {
 
   useEffect(() => {
     calculateInvestment();
-  }, [years, targetAmount, annualReturn]);
+  }, [years, targetAmount, annualReturn, initialCapital]);
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('bg-BG', {
@@ -106,6 +122,28 @@ function App() {
             </h2>
 
             <div className="space-y-6">
+              {/* Initial Capital Input */}
+              <div>
+                <label className="flex items-center gap-2 text-slate-300 font-medium mb-3">
+                  <Euro className="w-5 h-5 text-purple-400" />
+                  Начален капитал (вече инвестирани средства)
+                </label>
+                <div className="relative">
+                  <Euro className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
+                  <input
+                    type="number"
+                    value={initialCapital}
+                    onChange={(e) => setInitialCapital(Number(e.target.value))}
+                    min="0"
+                    className="w-full bg-slate-700/50 border border-slate-600 rounded-lg pl-12 pr-4 py-3 text-white text-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
+                    placeholder="0"
+                  />
+                </div>
+                <p className="text-slate-400 text-sm mt-2">
+                  Сумата, която вече имаш инвестирана в началото на периода
+                </p>
+              </div>
+
               {/* Years Input */}
               <div>
                 <label className="flex items-center gap-2 text-slate-300 font-medium mb-3">
@@ -137,7 +175,7 @@ function App() {
                     onChange={(e) => setTargetAmount(Number(e.target.value))}
                     min="1000"
                     className="w-full bg-slate-700/50 border border-slate-600 rounded-lg pl-12 pr-4 py-3 text-white text-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200"
-                    placeholder="100000"
+                    placeholder="1000000"
                   />
                 </div>
               </div>
@@ -173,18 +211,37 @@ function App() {
                 <div className="bg-gradient-to-r from-emerald-500/10 to-blue-500/10 backdrop-blur-sm rounded-2xl p-8 border border-emerald-500/20 shadow-2xl">
                   <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                     <TrendingUp className="w-5 h-5 text-emerald-400" />
-                    Месечна инвестиция
+                    {result.monthlyInvestment > 0 ? 'Месечна инвестиция' : 'Началният капитал е достатъчен!'}
                   </h3>
-                  <div className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-400 mb-2">
-                    {formatCurrencyPrecise(result.monthlyInvestment)}
-                  </div>
-                  <p className="text-slate-300">
-                    Трябва да инвестираш месечно за {years} години
-                  </p>
+                  {result.monthlyInvestment > 0 ? (
+                    <>
+                      <div className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-400 mb-2">
+                        {formatCurrencyPrecise(result.monthlyInvestment)}
+                      </div>
+                      <p className="text-slate-300">
+                        Трябва да инвестираш месечно за {years} години
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <div className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-400 mb-2">
+                        {formatCurrencyPrecise(0)}
+                      </div>
+                      <p className="text-slate-300">
+                        Началният ти капитал ще нарасне до целевата сума за {years} години
+                      </p>
+                    </>
+                  )}
                 </div>
 
                 {/* Summary Cards */}
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50">
+                    <h4 className="text-slate-300 font-medium mb-2">Начален капитал</h4>
+                    <div className="text-2xl font-bold text-purple-400">
+                      {formatCurrency(result.initialCapital)}
+                    </div>
+                  </div>
                   <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50">
                     <h4 className="text-slate-300 font-medium mb-2">Общо инвестирано</h4>
                     <div className="text-2xl font-bold text-white">
@@ -212,7 +269,7 @@ function App() {
                           <div>
                             <div className="text-white font-medium">Година {item.year}</div>
                             <div className="text-slate-400 text-sm">
-                              Инвестирано: {formatCurrency(item.totalInvested)}
+                              Инвестирано: {formatCurrency(item.totalInvested + item.initialCapital)}
                             </div>
                           </div>
                         </div>
