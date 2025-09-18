@@ -1,0 +1,26 @@
+{
+  "name": "S&P 500 Инвестиционен Калкулатор",
+  "short_name": "InvestCalc",
+  "description": "Изчисли колко трябва да инвестираш месечно в S&P 500, за да постигнеш финансовите си цели",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#10b981",
+  "orientation": "portrait-primary",
+  "categories": ["finance", "productivity", "utilities"],
+  "lang": "bg",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ]
+}
