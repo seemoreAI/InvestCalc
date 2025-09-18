@@ -133,7 +133,14 @@ function App() {
                   <input
                     type="number"
                     value={initialCapital}
-                    onChange={(e) => setInitialCapital(Number(e.target.value))}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      if (value === '' || value === '0') {
+                        setInitialCapital(0);
+                      } else {
+                        setInitialCapital(Number(value));
+                      }
+                    }}
                     min="0"
                     className="w-full bg-slate-700/50 border border-slate-600 rounded-lg pl-12 pr-4 py-3 text-white text-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
                     placeholder="0"
@@ -153,11 +160,18 @@ function App() {
                 <input
                   type="number"
                   value={years}
-                  onChange={(e) => setYears(Number(e.target.value))}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (value === '' || value === '0') {
+                      setYears(0);
+                    } else {
+                      setYears(Number(value));
+                    }
+                  }}
                   min="1"
                   max="50"
                   className="w-full bg-slate-700/50 border border-slate-600 rounded-lg px-4 py-3 text-white text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                  placeholder="Въведи години..."
+                  placeholder="20"
                 />
               </div>
 
@@ -172,7 +186,14 @@ function App() {
                   <input
                     type="number"
                     value={targetAmount}
-                    onChange={(e) => setTargetAmount(Number(e.target.value))}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      if (value === '' || value === '0') {
+                        setTargetAmount(0);
+                      } else {
+                        setTargetAmount(Number(value));
+                      }
+                    }}
                     min="1000"
                     className="w-full bg-slate-700/50 border border-slate-600 rounded-lg pl-12 pr-4 py-3 text-white text-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200"
                     placeholder="1000000"
@@ -189,7 +210,14 @@ function App() {
                 <input
                   type="number"
                   value={annualReturn}
-                  onChange={(e) => setAnnualReturn(Number(e.target.value))}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (value === '' || value === '0') {
+                      setAnnualReturn(0);
+                    } else {
+                      setAnnualReturn(Number(value));
+                    }
+                  }}
                   min="0"
                   max="30"
                   step="0.1"
