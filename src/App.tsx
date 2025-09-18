@@ -138,6 +138,7 @@ function App() {
                       const numValue = value === '' ? 0 : Number(value);
                       setInitialCapital(Math.min(Math.max(numValue, 0), 10000000));
                     }}
+                    onWheel={(e) => e.currentTarget.blur()}
                     min="0"
                     max="10000000"
                     className="w-full bg-slate-700/50 border border-slate-600 rounded-lg pl-12 pr-4 py-3 text-white text-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
@@ -163,6 +164,7 @@ function App() {
                     const numValue = value === '' ? 0 : Number(value);
                     setYears(Math.min(Math.max(numValue, 0), 50));
                   }}
+                  onWheel={(e) => e.currentTarget.blur()}
                   min="1"
                   max="50"
                   className="w-full bg-slate-700/50 border border-slate-600 rounded-lg px-4 py-3 text-white text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
@@ -186,6 +188,7 @@ function App() {
                       const numValue = value === '' ? 0 : Number(value);
                       setTargetAmount(Math.min(Math.max(numValue, 0), 50000000));
                     }}
+                    onWheel={(e) => e.currentTarget.blur()}
                     min="1000"
                     max="50000000"
                     className="w-full bg-slate-700/50 border border-slate-600 rounded-lg pl-12 pr-4 py-3 text-white text-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200"
@@ -208,6 +211,7 @@ function App() {
                     const numValue = value === '' ? 0 : Number(value);
                     setAnnualReturn(Math.min(Math.max(numValue, 0), 30));
                   }}
+                  onWheel={(e) => e.currentTarget.blur()}
                   min="0"
                   max="30"
                   step="0.1"
