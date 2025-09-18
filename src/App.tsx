@@ -29,6 +29,7 @@ function App() {
     }
 
     const monthlyRate = annualReturn / 100 / 12;
+    const annualRate = annualReturn / 100;
     const totalMonths = years * 12;
     
     // Calculate future value of initial capital
@@ -51,7 +52,7 @@ function App() {
     for (let year = 1; year <= years; year++) {
       const monthsElapsed = year * 12;
       const investedSoFar = monthlyInvestment * monthsElapsed;
-      const futureValueOfInitialAtYear = initialCapital * Math.pow(1 + monthlyRate, monthsElapsed);
+      const futureValueOfInitialAtYear = initialCapital * Math.pow(1 + annualRate, year);
       const futureValueOfMonthlyAtYear = monthlyInvestment * (((Math.pow(1 + monthlyRate, monthsElapsed) - 1) / monthlyRate));
       const totalValue = futureValueOfInitialAtYear + futureValueOfMonthlyAtYear;
       const profit = totalValue - investedSoFar - initialCapital;
