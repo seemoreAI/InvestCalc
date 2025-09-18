@@ -135,6 +135,8 @@ function App() {
                     value={initialCapital}
                     onChange={(e) => {
                       const value = e.target.value;
+                     // Remove leading zeros
+                     const cleanValue = value.replace(/^0+(?=\d)/, '');
                       const numValue = value === '' ? 0 : Number(value);
                       setInitialCapital(Math.min(Math.max(numValue, 0), 10000000));
                     }}
@@ -171,6 +173,8 @@ function App() {
                   value={years}
                   onChange={(e) => {
                     const value = e.target.value;
+                   // Remove leading zeros
+                   const cleanValue = value.replace(/^0+(?=\d)/, '');
                     const numValue = value === '' ? 0 : Number(value);
                     setYears(Math.min(Math.max(numValue, 0), 50));
                   }}
@@ -205,6 +209,8 @@ function App() {
                     value={targetAmount}
                     onChange={(e) => {
                       const value = e.target.value;
+                     // Remove leading zeros
+                     const cleanValue = value.replace(/^0+(?=\d)/, '');
                       const numValue = value === '' ? 0 : Number(value);
                       setTargetAmount(Math.min(Math.max(numValue, 0), 50000000));
                     }}
@@ -228,6 +234,8 @@ function App() {
                   value={annualReturn}
                   onChange={(e) => {
                     const value = e.target.value;
+                   // Remove leading zeros
+                   const cleanValue = value.replace(/^0+(?=\d)/, '');
                     const numValue = value === '' ? 0 : Number(value);
                     setAnnualReturn(Math.min(Math.max(numValue, 0), 30));
                   }}
