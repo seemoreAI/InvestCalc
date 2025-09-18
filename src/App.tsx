@@ -142,6 +142,7 @@ function App() {
                       }
                     }}
                     min="0"
+                    max="1000000000"
                     className="w-full bg-slate-700/50 border border-slate-600 rounded-lg pl-12 pr-4 py-3 text-white text-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
                     placeholder="0"
                   />
@@ -169,7 +170,7 @@ function App() {
                     }
                   }}
                   min="1"
-                  max="50"
+                  max="100"
                   className="w-full bg-slate-700/50 border border-slate-600 rounded-lg px-4 py-3 text-white text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
                   placeholder="20"
                 />
@@ -195,6 +196,7 @@ function App() {
                       }
                     }}
                     min="1000"
+                    max="1000000000"
                     className="w-full bg-slate-700/50 border border-slate-600 rounded-lg pl-12 pr-4 py-3 text-white text-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200"
                     placeholder="1000000"
                   />
@@ -219,7 +221,7 @@ function App() {
                     }
                   }}
                   min="0"
-                  max="30"
+                  max="100"
                   step="0.1"
                   className="w-full bg-slate-700/50 border border-slate-600 rounded-lg px-4 py-3 text-white text-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200"
                   placeholder="10"
