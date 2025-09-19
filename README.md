@@ -62,6 +62,28 @@ npm run lint
 
 За въпроси: [seemore@mail.bg](mailto:seemore@mail.bg)
 
+## Качване в Netlify
+
+За да качиш проекта в Netlify, следвай тези стъпки:
+
+### Метод 1: Чрез Git (препоръчително)
+1. Качи кода в GitHub репозитория
+2. Отиди на [netlify.com](https://netlify.com) и се регистрирай/влез
+3. Кликни "New site from Git"
+4. Избери GitHub и свържи репозиторията
+5. Настройки за билд:
+   - **Build command**: `npm run build`
+   - **Publish directory**: `dist`
+6. Кликни "Deploy site"
+
+### Метод 2: Чрез drag & drop
+1. Стартирай `npm run build` локално
+2. Отиди на [netlify.com](https://netlify.com)
+3. Влачи и пусни `dist` папката в областта "Want to deploy a new site without connecting to Git?"
+
+### Автоматично обновяване
+При използване на Git метода, всяко push в репозиторията автоматично ще обнови сайта.
+
 ## Лиценз
 
 MIT License
